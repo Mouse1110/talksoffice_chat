@@ -9,7 +9,7 @@ $(function () {
     $('#boxChat').hide();
     $('#titleName').hide();
     $('#divSend').hide();
-
+    $('#listUser').css('height','130px');
     // Check user (create or get)
     firebase.database().ref('User').on('child_added', function (snapshot) {
         //Do something with the data
@@ -22,7 +22,6 @@ $(function () {
         //Do something with the data
         if (acc_data.phone == snapshot.val().to || acc_data.phone == snapshot.val().phone) {
             lMess.push({ text: snapshot.val().text, phone: snapshot.val().phone, to: snapshot.val().to, seen: snapshot.val().seen, time: snapshot.val().time });
-
             if (userSend.findIndex(e => e.phone == snapshot.val().phone) == -1) {
                 //
                 var user = lUser.find(e => e.phone == snapshot.val().phone);
@@ -30,16 +29,17 @@ $(function () {
                     userSend.push({ name: user.name, phone: user.phone });
                     var button = document.createElement('button');
                     button.onclick = function () {
+                       document.getElementById('chatList').innerHTML = '';
                         $('#boxChat').show();
                         $('#titleName').show();
                         $('#divSend').show();
+                        $('#listUser').css('height','520px');
                         userIndex = user;
                         document.getElementById('name').innerHTML = user.name;
                         var messShow = [];
                         lMess.forEach((e) => {
                             if (e.phone == user.phone || e.to == user.phone) {
                                 messShow.push(e);
-
                             }
                         });
                         messShow.forEach((e) => {
@@ -77,8 +77,13 @@ $(function () {
                                     li.appendChild(divText);
                                     $('#chatList').append(li);
                                 }
+                                $('#chatList').scrollTop($('#chatList').height());
+                                $('#chatList').animate({
+                                    scrollTop: $('#chatList').get(0).scrollHeight
+                                }, 1500);
                         })
                     }
+                    if (user.name=="talks") return;
                     var li = document.createElement('li');
                     li.className = 'clearfix';
                     var img = document.createElement('img');
