@@ -12,8 +12,15 @@ body{
     width: 100%;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
 }
+.input-group-prepend{
+    float: left;
+}
+.input-group .form-control{
+    width: 90%;
+    margin-left: 2%;
+    margin-bottom: 20px;
+}
 .size-list-chat{
-    height: 130px;
     overflow: auto;
 }
 .chat-app .people-list {
@@ -93,8 +100,11 @@ body{
 }
 
 .chat .chat-history {
-    padding: 0px 20px;
+    padding: 0px 40px;
     border-bottom: 2px solid #fff;
+   
+}
+.input-size{
    
 }
 
@@ -174,7 +184,6 @@ body{
 
 .chat .chat-history .other-message:after {
     border-bottom-color: #e8f1f3;
-    left: 93%
 }
 
 .chat .chat-message {
