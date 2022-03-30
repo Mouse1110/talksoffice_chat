@@ -77,11 +77,10 @@ $(function () {
                                     li.appendChild(divText);
                                     $('#chatList').append(li);
                                 }
-                                $('#chatList').scrollTop($('#chatList').height());
-                                $('#chatList').animate({
-                                    scrollTop: $('#chatList').get(0).scrollHeight
-                                }, 1500);
+                               
                         })
+                        document.getElementById('chatList').scrollTop = document.getElementById('chatList').scrollHeight;
+                        
                     }
                     if (user.name=="talks") return;
                     var li = document.createElement('li');
@@ -116,6 +115,7 @@ $(function () {
                     // </li>`);
                     $('#listUser').append(button);
                 }
+                
             }
 
             if (userIndex != undefined) {
@@ -154,7 +154,8 @@ $(function () {
                             li.appendChild(divText);
                             $('#chatList').append(li);
                         }
-                    document.getElementById('chatList').scrollIntoView(false);
+                        document.getElementById('chatList').scrollTop = document.getElementById('chatList').scrollHeight;
+                        console.log("hello");
                 }
             }
         }
